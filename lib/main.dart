@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+
 
 void main() {
+  usePathUrlStrategy(); 
   runApp(const LegalWebsiteApp());
 }
 
