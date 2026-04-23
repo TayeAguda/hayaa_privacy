@@ -4,7 +4,6 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:go_router/go_router.dart';
 
-
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   usePathUrlStrategy();
@@ -25,17 +24,25 @@ class LegalWebsiteApp extends StatelessWidget {
         path: '/privacy',
         builder: (BuildContext context, GoRouterState state) =>
             const DocumentScreen(
-          title: 'Privacy Policy',
-          assetPath: 'assets/privacy_policy.html',
-        ),
+              title: 'Privacy Policy',
+              assetPath: 'assets/privacy_policy.html',
+            ),
       ),
       GoRoute(
         path: '/terms',
         builder: (BuildContext context, GoRouterState state) =>
             const DocumentScreen(
-          title: 'Terms & Conditions',
-          assetPath: 'assets/term_and_conditions.html',
-        ),
+              title: 'Terms & Conditions',
+              assetPath: 'assets/term_and_conditions.html',
+            ),
+      ),
+      GoRoute(
+        path: '/child-safety',
+        builder: (BuildContext context, GoRouterState state) =>
+            const DocumentScreen(
+              title: 'Child Safety Standards',
+              assetPath: 'assets/child_safety.html',
+            ),
       ),
     ],
     errorBuilder: (BuildContext context, GoRouterState state) =>
@@ -113,6 +120,11 @@ class HomeScreen extends StatelessWidget {
                             icon: const Icon(Icons.description_outlined),
                             label: const Text('Terms & Conditions'),
                           ),
+                          OutlinedButton.icon(
+                            onPressed: () => context.go('/child-safety'),
+                            icon: const Icon(Icons.child_care_outlined),
+                            label: const Text('Child Safety Standards'),
+                          ),
                         ],
                       ),
                     ],
@@ -162,7 +174,10 @@ class DocumentScreen extends StatelessWidget {
           }
 
           return SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16.0,
+              vertical: 24.0,
+            ),
             child: Center(
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 800),
@@ -197,10 +212,7 @@ class DocumentScreen extends StatelessWidget {
 class NotFoundScreen extends StatelessWidget {
   final String path;
 
-  const NotFoundScreen({
-    super.key,
-    required this.path,
-  });
+  const NotFoundScreen({super.key, required this.path});
 
   @override
   Widget build(BuildContext context) {
